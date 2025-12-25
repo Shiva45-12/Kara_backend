@@ -11,12 +11,12 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-app.use(cors(
-  // {
-  //   origin: ["https://kara-frontend.onrender.com", "http://localhost:5000"],
-  //   credentials: true,
-  // }
-));
+const cors = require('cors');
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+}));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
