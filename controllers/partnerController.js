@@ -83,7 +83,25 @@ const getAllPartners = async (req, res) => {
     }
 };
 
+// Delete Partner
+const deletePartner = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Partner.findByIdAndDelete(id);
+        res.json({
+            success: true,
+            message: 'Partner deleted successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting partner'
+        });
+    }
+};
+
 module.exports = {
     registerPartner,
-    getAllPartners
+    getAllPartners,
+    deletePartner
 };

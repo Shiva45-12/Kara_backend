@@ -1,14 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { submitContact, getAllContacts } = require('../controllers/contactController');
+const { submitContact, getAllContacts, deleteContact } = require('../controllers/contactController');
 
 // Routes
-router.post('/submit', async (req, res) => {
-    await submitContact(req, res);
-});
-
-router.get('/', async (req, res) => {
-    await getAllContacts(req, res);
-});
+router.post('/submit', submitContact);
+router.get('/', getAllContacts);
+router.delete('/:id', deleteContact);
 
 module.exports = router;

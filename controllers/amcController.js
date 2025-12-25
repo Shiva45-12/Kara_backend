@@ -89,7 +89,25 @@ const getAllAMCRequests = async (req, res) => {
     }
 };
 
+// Delete AMC Request
+const deleteAMCRequest = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await AMC.findByIdAndDelete(id);
+        res.json({
+            success: true,
+            message: 'AMC request deleted successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting AMC request'
+        });
+    }
+};
+
 module.exports = {
     submitAMCQuote,
-    getAllAMCRequests
+    getAllAMCRequests,
+    deleteAMCRequest
 };

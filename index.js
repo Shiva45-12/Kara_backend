@@ -12,10 +12,10 @@ connectDB();
 
 // Middleware
 app.use(cors(
-  {
-    origin: ["https://kara-frontend.onrender.com", "http://localhost:5000"],
-    credentials: true,
-  }
+  // {
+  //   origin: ["https://kara-frontend.onrender.com", "http://localhost:5000"],
+  //   credentials: true,
+  // }
 ));
 
 app.use(express.json());
@@ -31,6 +31,7 @@ app.use('/api/amc', require('./routes/amc'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/popup', require('./routes/popup'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/blogs', require('./routes/blog'));
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);

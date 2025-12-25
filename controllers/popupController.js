@@ -81,7 +81,25 @@ const getAllPopups = async (req, res) => {
     }
 };
 
+// Delete Popup Submission
+const deletePopup = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Popup.findByIdAndDelete(id);
+        res.json({
+            success: true,
+            message: 'Popup submission deleted successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting popup submission'
+        });
+    }
+};
+
 module.exports = {
     submitPopup,
-    getAllPopups
+    getAllPopups,
+    deletePopup
 };

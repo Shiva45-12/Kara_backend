@@ -73,7 +73,9 @@ const getAllContacts = async (req, res) => {
         res.json({
             success: true,
             count: contacts.length,
-            data: contacts
+            data: {
+                contacts: contacts
+            }
         });
     } catch (error) {
         res.status(500).json({
@@ -83,7 +85,25 @@ const getAllContacts = async (req, res) => {
     }
 };
 
+// Delete Contact
+const deleteContact = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Contact.findByIdAndDelete(id);
+        res.json({
+            success: true,
+            message: 'Contact deleted successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting contact'
+        });
+    }
+};
+
 module.exports = {
     submitContact,
-    getAllContacts
+    getAllContacts,
+    deleteContact
 };
